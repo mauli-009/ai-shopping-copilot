@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "AI Shopping Copilot",
+  "version": "0.1.0",
+  "description": "AI-powered clothing shopping insights.",
+  "permissions": ["activeTab", "scripting", "storage", "sidePanel"],
+  "host_permissions": [
+    "https://www.amazon.in/*",
+    "https://www.myntra.com/*",
+    "http://localhost:8000/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.in/*", "https://www.myntra.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "side_panel": { "default_path": "sidepanel/index.html" },
+  "action": { "default_title": "Open Shopping Copilot" }
+}
