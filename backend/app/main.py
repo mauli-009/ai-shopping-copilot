@@ -4,6 +4,7 @@ from app.database import Base, engine
 from app.models import User, Product          # ensures tables register
 from app.routers import auth, products
 from app.core.cache import cache_ping
+from app.routers import auth, products, ai
 # Dev convenience: create tables on startup. Phase 4 replaces this with Alembic.
 #Base.metadata.create_all(bind=engine)
 
@@ -19,7 +20,7 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(products.router)
-
+app.include_router(ai.router)
 
 @app.get("/")
 def health():
