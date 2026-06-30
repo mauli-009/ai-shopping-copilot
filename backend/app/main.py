@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
 from app.models import User, Product          # ensures tables register
 from app.routers import auth, products
-
+from app.core.cache import cache_ping
 # Dev convenience: create tables on startup. Phase 4 replaces this with Alembic.
 #Base.metadata.create_all(bind=engine)
 
@@ -24,3 +24,7 @@ app.include_router(products.router)
 @app.get("/")
 def health():
     return {"status": "ok"}
+
+@app.get("/health/redis")
+def redis_health():
+    return {"redis_connected": cache_ping()}
