@@ -5,7 +5,7 @@ from app.models import User, Product          # ensures tables register
 from app.routers import auth, products
 
 # Dev convenience: create tables on startup. Phase 4 replaces this with Alembic.
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="AI Shopping Copilot API")
 
